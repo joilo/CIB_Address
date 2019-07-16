@@ -1,12 +1,10 @@
 # -*- coding:utf-8 -*-
 import json
-import sys
 import openpyxl
-import xlrd
 from openpyxl.utils import get_column_letter
 #import urllib
 from urllib.request import urlopen, quote
-# import xlrdFileExistsError: [Errno 17]
+import xlrd
 import time
 import os
 
@@ -19,6 +17,11 @@ def initial_AK_pond():  # 初始化ak 池 0 为有额度 1为额度已经用完 
     global ak_dic
     ak_dic = {}
     ak_dic = {
+        "mKOV9991B7N98C46kUeNRUXScM067Xys": 0,
+        "g3LUhuGRHmgbf2SFwaCF8yAtGW4nezPS": 0,
+        "kIzerPbQFAhs01H85XRNvngmXU73RF8L": 0,
+        "hvZ5O0of19Alfl7HShUWyOVlFiD8WYWG": 0,
+        "cq1NkGxVDIyVZSK1xLV2vsfVwOu5ajhV": 0,
         "5tlPS97zCcgTjbk6gy6AnLVG4p2jtg7u": 0,
         "UKg9gDjYcHMB5hSFMi1HxuQz18f041t1": 0,
         "GEC7Zek74HysO1AKCx1iG6bOXCzTWE6z": 0,
@@ -126,8 +129,6 @@ def run(filepath):
                 print("Finish  " + str(success_count) + " " + str(keyword))
                 searched_list.write(cur + "\n")  # 写入txt
                 searched_list.flush()
-            except NoneAKException:
-                sys.exit(0)
             except Exception as e:
                 print(e)
                 error_list.write(cur + "\n")  # 写入txt
@@ -165,26 +166,21 @@ if __name__ == '__main__':
     global searched_list
     global searched_city
     global error_list
-    city_name_list=['东营', '济南']
-    searched_city=open("TEST/城市已爬列表.txt",'a+',encoding='utf8')
+    city_name_list=['安庆','鞍山']
+    searched_city=open("城市已爬列表.txt",'a+',encoding='utf8')
     searched_city.seek(0,0)
     searched_city_list=[line.encode('utf8').decode('utf-8-sig').replace("\n","") for line in searched_city]
     for city_name in city_name_list:
         if city_name in searched_city_list:
             print(city_name+'城市已经爬取')
             continue
-        try:
-            os.mkdir("TEST/%s"%(city_name))
-        except OSError:
-            pass
-
-        new_txt = open("TEST/%s/%s公司地址补充.txt" %(city_name,city_name), 'a+', encoding='utf8')
-        searched_list = open("TEST/%s/%s已爬列表.txt"%(city_name,city_name), 'a+', encoding='utf8')
-        error_list = open("TEST/%s/%s报错列表.txt"%(city_name,city_name), 'a+', encoding='utf8')
-
-        filepath = "/Users/gym/Desktop/Work/地址清洗项目/公司（正则后）/%s.xlsx" %(city_name)
-        txt = 'TEST/%s/%s公司地址补充.txt' %(city_name,city_name)
-        new_sheet = 'TEST/%s/%s公司地址补充.xlsx' %(city_name,city_name)
+        os.mkdir("%s"%(city_name))
+        new_txt = open("%s/%s公司地址补充.txt" %(city_name,city_name),'a+',encoding='utf8')
+        searched_list = open("%s/%s已爬列表.txt"%(city_name,city_name),'a+',encoding='utf8')
+        error_list = open("%s/%s报错列表.txt"%(city_name,city_name),'a+',encoding='utf8')
+        filepath = "F:\地址项目材料\公司地址\%s.xlsx" %(city_name)
+        txt = '%s/%s公司地址补充.txt' %(city_name,city_name)
+        new_sheet = '%s/%s公司地址补充.xlsx' %(city_name,city_name)
         run(filepath)
         print("Successfully saved to " + txt)
         new_txt.close()
@@ -197,3 +193,4 @@ if __name__ == '__main__':
         searched_list.close()
         error_list.close()
     searched_city.close()
+        
