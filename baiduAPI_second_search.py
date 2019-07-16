@@ -40,6 +40,11 @@ def initial_AK_pond():  # 初始化ak 池 0 为有额度 1为额度已经用完 
         "yHHqlqI0pLycBZVlMRjCFtQ8HSyMVWgv": 0,
         "xWvxINdrIy3G7awGlkBPulhDnY0NXA42": 0,
         "cON4dGCQZyz5IqglB7dYcbCPyrYxoxu1": 0,
+		"8VeS9S4urxTAbQnGX5W9qv3pK3TIVyNf": 0,	
+		"RFyrpcvPqKCXkDyBU9tcqmYrYr8LB9n5": 0,
+		"BBwLcw7NrYyM8Gr2qmSEqnV0f5fD4xuL": 0,
+		"jR5cI4Pqa3N9vAqG6CmiVNjEsVofQTQ8": 0,
+		"bcBZvrD1ADOIGmkh9TQrIyLn73wGcjel": 0
     }
 
 def exchange_AK():
